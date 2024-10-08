@@ -44,6 +44,7 @@
 // }
 
 import 'package:adv_provider/provider/homepage_provider.dart';
+import 'package:adv_provider/provider/themeProvider.dart';
 import 'package:adv_provider/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,6 +57,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: secondary,
       appBar: AppBar(
@@ -74,7 +76,9 @@ class HomePage extends StatelessWidget {
               onSelected: (value) {},
               itemBuilder: (context) => [
                     PopupMenuItem(
-                      child: GestureDetector(onTap: () {}, child: Text("Dark")),
+                      child: GestureDetector(onTap: () {
+                        provider.Theme;
+                      }, child: Text("Dark")),
                       value: 1,
                     ),
                     PopupMenuItem(

@@ -23,8 +23,12 @@
 //
 //
 import 'package:adv_provider/provider/homepage_provider.dart';
+import 'package:adv_provider/provider/themeProvider.dart';
 import 'package:adv_provider/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
+
 import 'package:provider/provider.dart';
 void main()
 {
@@ -36,17 +40,22 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=> TodoProvider()),
+        ChangeNotifierProvider(create: (_)=> ThemeProvider()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        themeMode: (isDark)?ThemeMode.dark:ThemeMode.light,
-        home: HomePage(),
-      ),
+      builder: (context,child){
+        final provider= Provider.of<ThemeProvider>(context);
+        return  MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: (isDark)?ThemeMode.dark:ThemeMode.light,
+          home: HomePage(),
+        );
+      },
     );
   }
 }
