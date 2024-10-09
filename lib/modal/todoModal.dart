@@ -1,5 +1,5 @@
 class TodoModal {
-  final String TodoNamee;
+  late final String TodoNamee;
   final String Date;
   final String Time;
 

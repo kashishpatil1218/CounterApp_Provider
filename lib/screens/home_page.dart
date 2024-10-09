@@ -76,9 +76,11 @@ class HomePage extends StatelessWidget {
               onSelected: (value) {},
               itemBuilder: (context) => [
                     PopupMenuItem(
-                      child: GestureDetector(onTap: () {
-                        provider.Theme;
-                      }, child: Text("Dark")),
+                      child: GestureDetector(
+                          onTap: () {
+                            provider.Theme;
+                          },
+                          child: Text("Dark")),
                       value: 1,
                     ),
                     PopupMenuItem(
@@ -88,24 +90,22 @@ class HomePage extends StatelessWidget {
                   ])
         ],
       ),
-      body: Consumer<TodoProvider>(
-
-          builder: (context, TodoProvider, _) {
-            return ListView.separated(
-                itemBuilder: (context, index) {
-                  final task = TodoProvider.todoList[index];
-                  return TaskWidget(
-                    todo: task,
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    color: primary,
-                    thickness: 1.5,
-                  );
-                },
-                itemCount: TodoProvider.todoList.length);
-          }),
+      body: Consumer<TodoProvider>(builder: (context, TodoProvider, _) {
+        return ListView.separated(
+            itemBuilder: (context, index) {
+              final task = TodoProvider.todoList[index];
+              return TaskWidget(
+                todo: task,
+              );
+            },
+            separatorBuilder: (context, index) {
+              return Divider(
+                color: primary,
+                thickness: 1.5,
+              );
+            },
+            itemCount: TodoProvider.todoList.length);
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
@@ -224,7 +224,7 @@ class DialogBoxWiidget extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      "Add",
+                      "Save",
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -292,22 +292,135 @@ class TaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context, listen: false);
     return ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-        title: Text(
-          todo.TodoNamee,
-          // todo.TodoName,
-          style: TextStyle(
-              color: primary, fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-        subtitle: Text(
-          "${todo.Date},${todo.Time} ",
-          style: TextStyle(color: textBlue),
-        ),
-        trailing: IconButton(
-          icon: Icon(Icons.delete),
-          onPressed: () {
-            todoProvider.romoveData(todo);
-          },
-        ));
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+      title: Text(
+        todo.TodoNamee,
+        // todo.TodoName,
+        style: TextStyle(
+            color: primary, fontSize: 16, fontWeight: FontWeight.w600),
+      ),
+      subtitle: Text(
+        "${todo.Date},${todo.Time} ",
+        style: TextStyle(color: textBlue),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              showDialog(context: context, builder: (context) => Dialog(
+                backgroundColor: secondary,
+                child: SizedBox(
+                  height: 420,
+                  width:double.infinity,
+                  child: Padding(
+                    padding:
+                    EdgeInsets.symmetric(horizontal:20, vertical:20),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Text(
+                              'Add Task',
+                              style: TextStyle(
+                                  color: primary,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Create your daily Task',
+                            style: TextStyle(color: textBlue),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TexttWidget(
+                            controller: todoProvider.TodoNametxt,
+                            text: 'Enter a Task',
+                            onChanged: (value) {
+                              todoProvider.addTodoName(value);
+                            },
+                            see: false,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            'Date',
+                            style: TextStyle(color: textBlue),
+                          ),
+                          TexttWidget(
+                            text: 'Select the Date',
+                            see: true,
+                            icon: Icons.calendar_month,
+                            controller: todoProvider.Datetxt,
+                            onTap: () async {
+                              DateTime? date = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2006),
+                                  lastDate: DateTime(2030));
+                              todoProvider.addDate(date);
+                            },
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Time',
+                            style: TextStyle(color: textBlue),
+                          ),
+                          TexttWidget(
+                            text: 'Select the Time',
+                            controller: todoProvider.Timetxt,
+                            see: true,
+                            icon: Icons.access_time,
+                            onTap: () async {
+                              TimeOfDay? time = await showTimePicker(
+                                  context: context, initialTime: TimeOfDay.now());
+                              todoProvider.addTime(time);
+                            },
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                todo.TodoNamee;
+
+                              },
+                              child: Text(
+                                "Save",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              todoProvider.romoveData(todo);
+            },
+          ),
+        ],
+      )
+    );
   }
 }
+

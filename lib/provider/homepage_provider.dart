@@ -1,20 +1,4 @@
-// import 'package:flutter/material.dart';
-//
-// class HomeProvider extends ChangeNotifier
-// {
-//   int counter =0;
-//
-//   void addition()
-//   {
-//     counter ++;
-//     notifyListeners();
-//   }
-//   void decrement()
-//   {
-//     counter--;
-//     notifyListeners();
-//   }
-// }
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -31,6 +15,7 @@ class TodoProvider extends ChangeNotifier {
   final TextEditingController TodoNametxt= TextEditingController();
   final TextEditingController Datetxt = TextEditingController();
   final TextEditingController Timetxt = TextEditingController();
+
 
   //for change in ui and add the task name
   void addTodoName(String todoName) {//methode(String? value)
