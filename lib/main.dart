@@ -60,8 +60,13 @@
 //   }
 // }
 // bool isDark = false;
+
+import 'package:adv_provider/provider/themeProvider.dart';
 import 'package:adv_provider/screens/url_Launcher.dart';
+import 'package:adv_provider/utils/global.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main()
  {
@@ -73,7 +78,7 @@ void main()
 
    @override
    Widget build(BuildContext context) {
-     return MaterialApp(
+     return const MaterialApp(
        debugShowCheckedModeBanner: false,
        home: UrlScreen(),
      );
