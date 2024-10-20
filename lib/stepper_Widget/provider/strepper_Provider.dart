@@ -6,7 +6,7 @@ class StepperProvider extends ChangeNotifier{
   int get activeStepIndex => _activeStepIndex;
 
   void nextStep(){
-    if(_activeStepIndex<2)
+    if(_activeStepIndex < 2)
       {
         _activeStepIndex++;
         notifyListeners();

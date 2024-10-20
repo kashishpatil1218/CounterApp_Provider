@@ -41,15 +41,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => StepperProvider(),
-      child: Consumer<ThemeProviderSwitch>(
+      child: Consumer<StepperProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData.light(),
-            darkTheme: ThemeData.dark(),
-            themeMode: themeProvider.getThemeMode()
-                ? ThemeMode.dark
-                : ThemeMode.light,
             home:  StepperPage1(),
           );
         },
