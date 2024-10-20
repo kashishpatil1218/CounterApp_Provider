@@ -22,6 +22,8 @@
 // // }
 // //
 // //
+import 'package:adv_provider/stepper_Widget/provider/strepper_Provider.dart';
+import 'package:adv_provider/stepper_Widget/views/stepper_Page1.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ThemeProviderSwitch(),
+      create: (context) => StepperProvider(),
       child: Consumer<ThemeProviderSwitch>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.getThemeMode()
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home: const HomePage(),
+            home:  StepperPage1(),
           );
         },
       ),
