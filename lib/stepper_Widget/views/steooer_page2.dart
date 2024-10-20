@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 
 import 'package:adv_provider/stepper_Widget/utils/global.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +8,14 @@ import 'package:provider/provider.dart';
 
 import '../provider/strepper_Provider.dart';
 
-class StepperPage1 extends StatefulWidget {
-  const StepperPage1({super.key});
+class StepperPage2 extends StatefulWidget {
+  const StepperPage2({super.key});
 
   @override
-  State<StepperPage1> createState() => _StepperPage1State();
+  State<StepperPage2> createState() => _StepperPage2State();
 }
 
-class _StepperPage1State extends State<StepperPage1> {
+class _StepperPage2State extends State<StepperPage2> {
   int _activeStepIndex = 0;
 
   // Define TextEditingController instances
@@ -115,7 +117,7 @@ class _StepperPage1State extends State<StepperPage1> {
       appBar: AppBar(
         actions: [
           IconButton(onPressed: () {
-          Navigator.of(context).pushNamed('/page2');
+            Navigator.of(context).pushNamed('/page2');
           }, icon: Icon(Icons.navigate_next_outlined,color: Colors.white,))
         ],
         centerTitle: true,
@@ -126,7 +128,7 @@ class _StepperPage1State extends State<StepperPage1> {
         backgroundColor: Colors.blue,
       ),
       body: Stepper(
-        type: StepperType.horizontal,
+        type: StepperType.vertical,
         currentStep: provider.activeStepIndex,
         steps: stepList(context, provider),
         onStepContinue: provider.nextStep,

@@ -23,6 +23,7 @@
 // //
 // //
 import 'package:adv_provider/stepper_Widget/provider/strepper_Provider.dart';
+import 'package:adv_provider/stepper_Widget/views/steooer_page2.dart';
 import 'package:adv_provider/stepper_Widget/views/stepper_Page1.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,11 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData.light(),
-            home:  StepperPage1(),
+
+            routes: {
+              '/':(context)=> const StepperPage1(),
+              '/page2':(context)=> const StepperPage2(),
+            },
           );
         },
       ),
