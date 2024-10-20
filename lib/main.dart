@@ -30,6 +30,7 @@ import 'package:provider/provider.dart';
 
 import 'Switch_user_theme/provider/themeProvider.dart';
 import 'Switch_user_theme/screen/home_page.dart';
+import 'one_Time_intro/screen/IntroPage1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,8 +50,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData.light(),
 
             routes: {
-              '/':(context)=> const StepperPage1(),
-              '/page2':(context)=> const StepperPage2(),
+              '/':(context)=> const IntroPage1(),
+              //'/page2':(context)=> const StepperPage2(),
             },
           );
         },
