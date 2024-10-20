@@ -22,65 +22,36 @@
 // // }
 // //
 // //
-// import 'package:adv_provider/provider/homepage_provider.dart';
-// import 'package:adv_provider/provider/themeProvider.dart';
-// import 'package:adv_provider/screens/home_page.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/material.dart';
-//
-//
-// import 'package:provider/provider.dart';
-// void main()
-// {
-//   runApp(TodoApp());
-// }
-//
-// class TodoApp extends StatelessWidget {
-//   const TodoApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     return MultiProvider(
-//       providers: [
-//         ChangeNotifierProvider(create: (_)=> TodoProvider()),
-//         ChangeNotifierProvider(create: (_)=> ThemeProvider()),
-//       ],
-//       builder: (context,child){
-//         final provider= Provider.of<ThemeProvider>(context);
-//         return  MaterialApp(
-//           debugShowCheckedModeBanner: false,
-//           theme: ThemeData.light(),
-//           darkTheme: ThemeData.dark(),
-//           themeMode: (isDark)?ThemeMode.dark:ThemeMode.light,
-//           home: HomePage(),
-//         );
-//       },
-//     );
-//   }
-// }
-// bool isDark = false;
-
-import 'package:adv_provider/provider/themeProvider.dart';
-import 'package:adv_provider/screens/url_Launcher.dart';
-import 'package:adv_provider/utils/global.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main()
- {
-   runApp(const UrlLauncher());
- }
+import 'Switch_user_theme/provider/themeProvider.dart';
+import 'Switch_user_theme/screen/home_page.dart';
 
- class UrlLauncher extends StatelessWidget {
-   const UrlLauncher({super.key});
+void main() {
+  runApp(const MyApp());
+}
 
-   @override
-   Widget build(BuildContext context) {
-     return const MaterialApp(
-       debugShowCheckedModeBanner: false,
-       home: UrlScreen(),
-     );
-   }
- }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => ThemeProviderSwitch(),
+      child: Consumer<ThemeProviderSwitch>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            themeMode: themeProvider.getThemeMode()
+                ? ThemeMode.dark
+                : ThemeMode.light,
+            home: const HomePage(),
+          );
+        },
+      ),
+    );
+  }
+}

@@ -44,7 +44,7 @@
 // }
 
 import 'package:adv_provider/provider/homepage_provider.dart';
-import 'package:adv_provider/provider/themeProvider.dart';
+import 'package:adv_provider/Switch_user_theme/provider/themeProvider.dart';
 import 'package:adv_provider/utils/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context);
+    final provider = Provider.of(context);
     return Scaffold(
       backgroundColor: secondary,
       appBar: AppBar(

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../provider/themeProvider.dart';
+import '../Switch_user_theme/provider/themeProvider.dart';
 import 'component/contactMethode.dart';
 
 import 'component/socialmedia_methode.dart';
